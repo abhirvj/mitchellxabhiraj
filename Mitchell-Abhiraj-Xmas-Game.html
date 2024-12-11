@@ -68,11 +68,24 @@
       background: #34d058;
     }
 
-    #audio-player {
+    #audio-controls {
       position: fixed;
       top: 10px;
       left: 10px;
       z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #loop-audio-label {
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #loop-audio {
+      cursor: pointer;
     }
   </style>
 </head>
@@ -90,11 +103,16 @@
     <button onclick="restartGame()">Play Again</button>
   </div>
 
-  <!-- Audio element with native controls and looping enabled -->
-  <audio id="audio-player" controls loop>
-    <source src="06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" type="audio/wav">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Audio controls with optional loop -->
+  <div id="audio-controls">
+    <audio id="audio-player" controls>
+      <source src="06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+    <label id="loop-audio-label">
+      <input type="checkbox" id="loop-audio"> Loop Audio
+    </label>
+  </div>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -105,6 +123,8 @@
     const endScreen = document.getElementById("end-screen");
     const finalScoreDisplay = document.getElementById("final-score");
     const finalLevelDisplay = document.getElementById("final-level");
+    const audioPlayer = document.getElementById("audio-player");
+    const loopAudioCheckbox = document.getElementById("loop-audio");
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -247,6 +267,11 @@
     handleInput();
     setInterval(updateTime, 1000); // Update time every second
     gameLoop();
+
+    // Handle loop audio option
+    loopAudioCheckbox.addEventListener("change", () => {
+      audioPlayer.loop = loopAudioCheckbox.checked;
+    });
   </script>
 </body>
 </html>
