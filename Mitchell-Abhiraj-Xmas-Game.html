@@ -70,11 +70,10 @@
 
     #play-button {
       position: fixed;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 20px 40px;
-      font-size: 1.5rem;
+      top: 10px;
+      right: 10px;
+      padding: 15px 30px;
+      font-size: 1rem;
       background: #FFD700;
       border: none;
       border-radius: 10px;
@@ -105,8 +104,8 @@
   <!-- Play Button to start music -->
   <button id="play-button">Play Music</button>
 
-  <!-- Audio element with the correct file name -->
-  <audio id="background-music" src="audio/06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" preload="auto"></audio>
+  <!-- Audio element with no folder structure -->
+  <audio id="background-music" src="06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" preload="auto"></audio>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
