@@ -21,7 +21,7 @@
     #game-info {
       position: fixed;
       top: 10px;
-      left: 10px;
+      right: 10px;
       font-size: 1.5rem;
       background: rgba(0, 0, 0, 0.5);
       padding: 10px;
@@ -68,22 +68,11 @@
       background: #34d058;
     }
 
-    #play-button {
+    #audio-player {
       position: fixed;
       top: 10px;
-      right: 10px;
-      padding: 15px 30px;
-      font-size: 1rem;
-      background: #FFD700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      color: #fff;
-      text-shadow: 0 0 10px #72ff72;
-    }
-
-    #play-button:hover {
-      background: #ff9900;
+      left: 10px;
+      z-index: 10;
     }
   </style>
 </head>
@@ -101,11 +90,11 @@
     <button onclick="restartGame()">Play Again</button>
   </div>
 
-  <!-- Play Button to start music -->
-  <button id="play-button">Play Music</button>
-
-  <!-- Audio element with no folder structure -->
-  <audio id="background-music" src="06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" preload="auto"></audio>
+  <!-- Audio element with native controls -->
+  <audio id="audio-player" controls>
+    <source src="06%20RUDOLPH%20THE%20RED%20NOSED%20REINDEER.wav" type="audio/wav">
+    Your browser does not support the audio element.
+  </audio>
 
   <script>
     const canvas = document.getElementById("gameCanvas");
@@ -116,9 +105,6 @@
     const endScreen = document.getElementById("end-screen");
     const finalScoreDisplay = document.getElementById("final-score");
     const finalLevelDisplay = document.getElementById("final-level");
-
-    const playButton = document.getElementById("play-button");
-    const backgroundMusic = document.getElementById("background-music");
 
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -261,12 +247,6 @@
     handleInput();
     setInterval(updateTime, 1000); // Update time every second
     gameLoop();
-
-    // Play button functionality
-    playButton.addEventListener("click", () => {
-      backgroundMusic.play();
-      playButton.disabled = true; // Disable play button after click
-    });
   </script>
 </body>
 </html>
